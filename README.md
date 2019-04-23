@@ -1,7 +1,7 @@
 # Results
 
 ## Usage
-`python parser.py (random|fullGrid|sparseGrid)`
+`python parser.py (random-dimension|random-size|fullGrid-dimension|fullGrid-size|sparseGrid-dimension|sparseGrid-size|halton-dimension|halton-size)`
 
 ## TODO
 
