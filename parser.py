@@ -16,7 +16,7 @@ shipPlot.axis((0, 1, 0, 1))
 fleetPlot = axes[1]
 fleetPlot.yaxis.label.set_size(14)
 fleetPlot.xaxis.label.set_size(14)
-fleetPlot.set(xlabel=r'$v \; / \; |C_{all}|$', ylabel=r'$P(\mathbf{X}_{strat} \leq v)$', title="Fleet distribution")
+fleetPlot.set(xlabel=r'$v \; / \; |C_{all}|$', ylabel=r'$P(\mathbf{X}^{F_{all}}_{strat} \leq v)$', title="Fleet distribution")
 fleetPlot.set_yscale("log")
 fleetPlot.yaxis.set_major_formatter(ticker.FormatStrFormatter(r"$2^{-%d}$"))
 
@@ -54,7 +54,8 @@ def load_and_plot(file):
         ys_2.append(y_2)
 
     sample_space = r"$\Omega_L=L_{all}$" if ships == sample_size else r"$|\Omega_L|=$" + str(sample_size)
-    l = shipPlot.step(xs,ys_1, label=name + " n=" + str(n) + ", d=" + str(d) + ", " + sample_space + " @ " + str(runs) + " run(s)")
+    runs_str = " @ " + str(runs) + " run(s)" if runs > 1 else ""
+    l = shipPlot.step(xs,ys_1, label=name + " n=" + str(n) + ", d=" + str(d) + ", " + sample_space + runs_str)
     shipPlot.legend(loc='lower right', borderaxespad=0.)
 
     expected_ships = float(strings[len(strings) - 2])
