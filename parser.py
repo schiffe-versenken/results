@@ -45,6 +45,7 @@ def load_and_plot(file):
     ys_1 = [0]
     ys_2 = [ships]
     for i in range(3, len(strings) - 2):
+
         v = strings[i].split(',')
         x = int(v[0]) / float(cells)
         xs.append(x)
@@ -61,9 +62,9 @@ def load_and_plot(file):
     expected_ships = float(strings[len(strings) - 2])
     shipPlot.axvline(x=(expected_ships / cells), color=l[0].get_color(), linestyle='--')
 
-    l = fleetPlot.step(xs,ys_2, label=name + " n=" + str(n) + ", d=" + str(d))
+    l = fleetPlot.step(xs,ys_2, label=name + " n=" + str(n) + ", d=" + str(d) + ", " + sample_space + runs_str)
     fleetPlot.legend(loc='lower right', borderaxespad=0.)
-    fleetPlot.axis((0, 1, ships, 0))
+    fleetPlot.axis((0, 1, ships, 0.1))
 
     expected_fleets = float(strings[len(strings) - 1])
     fleetPlot.axvline(x=(expected_fleets / cells), color=l[0].get_color(), linestyle='--')
