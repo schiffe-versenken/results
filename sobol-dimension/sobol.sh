@@ -1,0 +1,9 @@
+./sv -n 10 -d 1 -b 1 -c 100000 -s sobol -t 48
+./sv -n 10 -d 2 -b 2 -c 100000 -s sobol -t 48
+./sv -n 10 -d 3 -b 3 -c 100000 -s sobol -t 48
+./sv -n 10 -d 4 -b 4 -c 1000000 -s sobol -t 48
+./sv -n 10 -d 5 -b 5 -c 1000000 -s sobol -t 48
+./sv -n 10 -d 6 -b 6 -c 1000000 -s sobol -t 48
+./sv -n 10 -d 7 -b 7 -c 1000000 -s sobol -t 48
+./sv -n 10 -d 8 -b 8 -c 100000 -s sobol -t 48
+./sv -n 10 -d 9 -b 9 -c 100000 -s sobol -t 48
