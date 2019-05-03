@@ -7,6 +7,24 @@ directory = sys.argv[1]
 
 fig, axes = plt.subplots(nrows=2, ncols=1, sharex="none", sharey="none")
 
+
+def scientific_notation(number):
+    ex = 0
+    while number >= 10:
+        number = number / 10
+        ex = ex + 1
+    return str(int(number)) + r'\times 10^{%d}' % ex if number != 1 else r'10^{%d}' % ex
+
+
+def scientific_notation_as_tex(number):
+    return '$' + scientific_notation(number) + '$'
+
+
+@ticker.FuncFormatter
+def major_formatter(x, pos):
+    return r"$2^{-" + scientific_notation(x) + "}$" if x != 0.1 else "1"
+
+
 shipPlot = axes[0]
 shipPlot.set(xlabel=r'$v \; / \; |C_{all}|$', ylabel=r'$P(\mathbf{T}^{\Omega_L}_{strat} \leq v)$', title="Ship distribution")
 shipPlot.xaxis.label.set_size(14)
@@ -18,7 +36,7 @@ fleetPlot.yaxis.label.set_size(14)
 fleetPlot.xaxis.label.set_size(14)
 fleetPlot.set(xlabel=r'$v \; / \; |C_{all}|$', ylabel=r'$P(\mathbf{X}^{F_{all}}_{strat} \leq v)$', title="Fleet distribution")
 fleetPlot.set_yscale("log", basey=10)
-fleetPlot.yaxis.set_major_formatter(ticker.FormatStrFormatter(r"$2^{-%d}$"))
+fleetPlot.yaxis.set_major_formatter(major_formatter)
 
 
 def load_and_plot(file):
@@ -57,7 +75,7 @@ def load_and_plot(file):
             y_2 = 0.1
         ys_2.append(y_2)
 
-    sample_space = r"$\Omega_L=L_{all}$" if ships == sample_size else r"$|\Omega_L|=$" + str(sample_size)
+    sample_space = r"$\Omega_L=L_{all}$" if ships == sample_size else r"$|\Omega_L|=$" + scientific_notation_as_tex(sample_size)
     runs_str = " @ " + str(runs) + " run(s)" if runs > 1 else ""
     dims_str = "0" + str(d) if d < 10 else str(d)
     l = shipPlot.step(xs,ys_1, where="post", label=name + " n=" + str(n) + ", d=" + dims_str + ", " + sample_space + runs_str)
