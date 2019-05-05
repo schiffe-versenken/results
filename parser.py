@@ -66,7 +66,7 @@ def load_and_plot(file):
         if d > 6 and i % 3 != 0:
             continue
         v = strings[i].split(',')
-        x = int(v[0]) / float(cells)
+        x = float(v[0]) / float(cells)
         xs.append(x)
         y_1 = float(v[1])
         ys_1.append(y_1)
