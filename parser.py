@@ -11,9 +11,9 @@ fig, axes = plt.subplots(nrows=2, ncols=1, sharex="none", sharey="none")
 def scientific_notation(number):
     ex = 0
     while number >= 10:
-        number = number / 10
+        number = number / 10.0
         ex = ex + 1
-    return str(int(number)) + r'\times 10^{%d}' % ex if number != 1 else r'10^{%d}' % ex
+    return str(float(number)) + r'\times 10^{%d}' % ex if number != 1.0 else r'10^{%d}' % ex
 
 
 def scientific_notation_as_tex(number):
